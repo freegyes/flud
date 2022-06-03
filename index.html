@@ -6,30 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flud</title>
     <style>
-        #log {
-            height: 200px;
-            width: 600px;
-            overflow: scroll;
+        main {
+            height: 100%;
+            width: 100%;
+            background-color: moccasin;
         }
     </style>
 </head>
 <body>
-    <canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
-        Your browser does not support canvas element.
-    </canvas>
-    <br>
-    Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+    <main id="flud">Touch to play.</main>
     <script>
         function startup() {
-            const el = document.getElementById('canvas');
+            const el = document.getElementById('flud');
             el.addEventListener('touchstart', handleStart);
             el.addEventListener('touchend', handleEnd);
-            el.addEventListener('touchcancel', handleCancel);
-            el.addEventListener('touchmove', handleMove);
             log('Initialized.');
         }
 
-            document.addEventListener("DOMContentLoaded", startup);
+        function handleStart(evt) {
+            evt.preventDefault();
+            log('touchstart.');
+            const el = document.getElementById('flud');
+            el.style.backgroundColor = "blue";
+        }
+
+        function handleEnd(evt) {
+            evt.preventDefault();
+            log("touchend");
+            const el = document.getElementById('flud');
+            el.style.backgroundColor = "yellow";
+        }
+
+        document.addEventListener("DOMContentLoaded", startup);
 
     </script>
 </body>
